@@ -1,0 +1,68 @@
+module.exports = {
+  extends: [
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jest/recommended',
+    'prettier',
+    'prettier/react',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended'
+  ],
+  plugins: ['react', '@typescript-eslint', 'jest'],
+  env: {
+    browser: true,
+    es6: true,
+    jest: true,
+  },
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    project: './tsconfig.json',
+  },
+  rules: {
+    'linebreak-style': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'react/jsx-props-no-spreading': 0,
+    'react/no-access-state-in-setstate': 0,
+    'react/state-in-constructor': 0,
+    'react/require-default-props': 0,
+    'react-hooks/exhaustive-deps': 0,
+    'import/prefer-default-export': 0,
+    '@typescript-eslint/no-use-before-define': 0,
+    '@typescript-eslint/no-shadow': 0,
+    'no-lonely-if': 0,
+    'no-param-reassign': 0,
+    'no-nested-ternary': 0,
+    'no-underscore-dangle': 0,
+    'consistent-return': 0,
+    'jsx-a11y/anchor-is-valid': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 0,
+    'jest/expect-expect': 0,
+    'no-plusplus': 0,
+    '@typescript-eslint/naming-convention': 0,
+    'react/destructuring-assignment': 0,
+    'jsx-a11y/no-noninteractive-element-interactions': 0,
+    'react/button-has-type': 0,
+    'react/jsx-boolean-value': 0,
+    'react/no-unused-prop-types': 0,
+    'no-unneeded-ternary': 0,
+    'import/no-cycle': 0
+  },
+};

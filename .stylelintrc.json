@@ -1,0 +1,17 @@
+{
+  "plugins": ["stylelint-prettier", "stylelint-selector-bem-pattern"],
+  "rules": {
+    "indentation": 2,
+    "number-leading-zero": null,
+    "max-nesting-depth": 5,
+    "selector-max-compound-selectors": 5,
+    "plugin/selector-bem-pattern": {
+      "componentName": "[A-Z]+",
+      "componentSelectors": {
+        "initial": "^\\.{componentName}(?:-[a-z]+)?$",
+        "combined": "^\\.combined-{componentName}-[a-z]+$"
+      },
+      "utilitySelectors": "^\\.util-[a-z]+$"
+    }
+  }
+}
