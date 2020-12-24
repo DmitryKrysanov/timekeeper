@@ -8,7 +8,7 @@ configure({adapter: new Adapter()});
 
 const myMock = jest.fn();
 
-describe('<Loader />', () => {
+describe('<PrimaryButton />', () => {
   const button = shallow(
     <PrimaryButton
       isLoad={true}
@@ -31,7 +31,7 @@ describe('<Loader />', () => {
     expect(loader.exists()).toBe(false);
   });
 
-  it('click Loader component', () => {
+  it('click PrimaryButton component', () => {
     button.simulate('click');
     expect(myMock.mock.calls.length).toEqual(1);
   });
