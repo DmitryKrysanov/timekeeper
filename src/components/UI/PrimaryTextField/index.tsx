@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-interface ITextField {
+interface IPrimaryTextField {
   variant: 'standard' | 'filled' | 'outlined' | undefined;
   label: string;
   name: string;
@@ -17,7 +17,7 @@ export default function PrimaryTextField({
   register,
   name,
   ...restProps
-}: ITextField) {
+}: IPrimaryTextField) {
   return (
     <TextField
       name={name}

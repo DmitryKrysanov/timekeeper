@@ -5,7 +5,7 @@ import * as ROUTES from '../../constants/routes';
 import {Card, CardRow, CardTitle} from '../UI/Card';
 import {Form, FormRow} from '../UI/Form';
 import PrimaryButton from '../UI/PrimaryButton';
-import TextField from '../UI/TextField';
+import TextField from '../UI/PrimaryTextField';
 import {Container, Hint} from './styles/SignIn';
 import {ISignInForm} from './types';
 

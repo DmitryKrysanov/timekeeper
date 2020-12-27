@@ -4,7 +4,7 @@ import 'jest-styled-components';
 import Adapter from 'enzyme-adapter-react-16';
 import {SignIn} from '..';
 import {CardTitle} from '../UI/Card';
-import PrimaryTextField from '../UI/TextField';
+import PrimaryTextField from '../UI/PrimaryTextField';
 
 configure({adapter: new Adapter()});
 
