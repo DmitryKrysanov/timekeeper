@@ -29,7 +29,7 @@ export default function SignUp(): JSX.Element {
   return (
     <Container>
       <Card>
-        <CardTitle>Sign In</CardTitle>
+        <CardTitle>Sign Up</CardTitle>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <FormRow>
             <Columns columns={2}>
@@ -43,6 +43,7 @@ export default function SignUp(): JSX.Element {
                     message: 'First Name should be at least 2 characters',
                   },
                 }}
+                defaultValue={null}
                 render={(props) => {
                   return (
                     <TextField
@@ -86,6 +87,7 @@ export default function SignUp(): JSX.Element {
                   message: 'Invalid email address',
                 },
               }}
+              defaultValue={null}
               render={(props) => {
                 return (
                   <TextField
@@ -111,6 +113,7 @@ export default function SignUp(): JSX.Element {
                   message: 'Password should be at least 6 characters',
                 },
               }}
+              defaultValue={null}
               render={(props) => {
                 return (
                   <TextField
