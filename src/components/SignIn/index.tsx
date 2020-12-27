@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {Controller, useForm} from 'react-hook-form';
 import * as ROUTES from '../../constants/routes';
 import {Card, CardRow, CardTitle} from '../UI/Card';
 import {Form, FormRow} from '../UI/Form';
@@ -7,18 +8,62 @@ import PrimaryButton from '../UI/PrimaryButton';
 import TextField from '../UI/TextField';
 import {Container, Hint} from './styles/SignIn';
 
+interface ISignInForm {
+  email: string;
+  password: string;
+}
+
 export default function SignIn(): JSX.Element {
-  const onSubmit = () => {};
+  const methods = useForm<ISignInForm>();
+  const {handleSubmit, control, errors} = methods;
+
+  const onSubmit = (data: ISignInForm) => {
+    console.log(data);
+  };
+
   return (
     <Container>
       <Card>
         <CardTitle>Sign In</CardTitle>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <FormRow>
-            <TextField variant="filled" label="Email" />
+            <Controller
+              name="email"
+              control={control}
+              defaultValue={false}
+              rules={{required: 'Email is Required'}}
+              render={(props) => {
+                return (
+                  <TextField
+                    variant="filled"
+                    label="Email"
+                    name="email"
+                    onChange={(e) => props.onChange(e.target.value)}
+                    errorMessage={errors.email && errors.email.message}
+                  />
+                );
+              }}
+            />
           </FormRow>
           <FormRow>
-            <TextField variant="filled" label="Password" />
+            <Controller
+              name="password"
+              control={control}
+              defaultValue={false}
+              rules={{required: 'Password is Required'}}
+              render={(props) => {
+                return (
+                  <TextField
+                    variant="filled"
+                    label="Password"
+                    name="password"
+                    type="password"
+                    onChange={(e) => props.onChange(e.target.value)}
+                    errorMessage={errors.password && errors.password.message}
+                  />
+                );
+              }}
+            />
           </FormRow>
           <FormRow>
             <p>Need help?</p>
@@ -27,7 +72,7 @@ export default function SignIn(): JSX.Element {
           <PrimaryButton
             color="primary"
             variant="contained"
-            onClick={onSubmit}
+            type="submit"
             isLoad={false}
           >
             Sign In
