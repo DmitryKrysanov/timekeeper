@@ -7,13 +7,9 @@ import {Form, FormRow} from '../UI/Form';
 import PrimaryButton from '../UI/PrimaryButton';
 import TextField from '../UI/TextField';
 import {Container, Hint} from './styles/SignIn';
+import {ISignInForm} from './types';
 
-interface ISignInForm {
-  email: string;
-  password: string;
-}
-
-export default function SignIn(): JSX.Element {
+export default function SignIn({signIn}: any): JSX.Element {
   const methods = useForm<ISignInForm>();
   const {handleSubmit, control, errors} = methods;
 
