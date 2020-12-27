@@ -4,17 +4,28 @@ import TextField from '@material-ui/core/TextField';
 interface ITextField {
   variant: 'standard' | 'filled' | 'outlined' | undefined;
   label: string;
+  name: string;
   defaultValue?: string;
   onChange?: (event: any) => void;
-  error?: string;
+  errorMessage?: string | undefined;
+  register?: any;
+  type?: 'text' | 'password';
 }
 
-export default function PrimaryTextField({error, ...restProps}: ITextField) {
+export default function PrimaryTextField({
+  errorMessage,
+  register,
+  name,
+  ...restProps
+}: ITextField) {
   return (
     <TextField
+      name={name}
+      fullWidth
       {...restProps}
-      error={error ? true : false}
-      helperText={error ? error : null}
+      error={errorMessage ? true : false}
+      helperText={errorMessage ? errorMessage : null}
+      ref={register}
     />
   );
 }

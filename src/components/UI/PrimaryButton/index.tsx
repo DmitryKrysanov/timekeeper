@@ -7,7 +7,8 @@ interface IPrimaryButton {
   children: any;
   color: 'inherit' | 'primary' | 'secondary' | 'default' | undefined;
   variant: 'text' | 'outlined' | 'contained' | undefined;
-  onClick: () => void;
+  type: 'button' | 'submit';
+  onClick?: () => void;
 }
 
 export default function PrimaryButton({

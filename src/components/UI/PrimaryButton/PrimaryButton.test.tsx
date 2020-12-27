@@ -15,6 +15,7 @@ describe('<PrimaryButton />', () => {
       color="primary"
       variant="contained"
       onClick={myMock}
+      type="button"
     >
       Button
     </PrimaryButton>,

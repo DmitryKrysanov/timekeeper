@@ -5,7 +5,7 @@ import * as ROUTES from './constants/routes';
 import {ProtectedRoute} from './helpers/routes';
 
 export default function App(): JSX.Element {
-  const user = true;
+  const user = false;
 
   return (
     <Switch>

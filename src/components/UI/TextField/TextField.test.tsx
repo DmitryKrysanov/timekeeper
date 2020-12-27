@@ -12,6 +12,7 @@ describe('<TextField />', () => {
     <TextField
       variant="filled"
       label="label"
+      name="email"
       onChange={(event) => {
         testState[event.target.name] = event.target.value;
       }}
