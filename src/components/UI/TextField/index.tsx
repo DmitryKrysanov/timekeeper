@@ -12,6 +12,7 @@ interface ITextField {
 export default function PrimaryTextField({error, ...restProps}: ITextField) {
   return (
     <TextField
+      fullWidth
       {...restProps}
       error={error ? true : false}
       helperText={error ? error : null}
