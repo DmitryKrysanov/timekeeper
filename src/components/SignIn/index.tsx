@@ -1,4 +1,5 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Controller, useForm} from 'react-hook-form';
 import * as ROUTES from '../../constants/routes';
@@ -8,12 +9,15 @@ import PrimaryButton from '../UI/PrimaryButton';
 import TextField from '../UI/PrimaryTextField';
 import {Container, Hint} from './styles/SignIn';
 import {ISignInForm} from './types';
+import {signIn} from '../../redux/actions/authActions';
 
-export default function SignIn({signIn}: any): JSX.Element {
+export default function SignIn(): JSX.Element {
+  const dispatch = useDispatch();
   const methods = useForm<ISignInForm>();
   const {handleSubmit, control, errors} = methods;
 
   const onSubmit = (data: ISignInForm) => {
+    dispatch(signIn(data));
     console.log(data);
   };
 
