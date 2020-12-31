@@ -19,4 +19,10 @@ export const authApi = {
       .post('/auth/signup', userData)
       .then((response) => response.data);
   },
+
+  forgotPassword(email: string) {
+    return instance
+      .post('/auth/forgot-password', email)
+      .then((response) => response.data);
+  },
 };

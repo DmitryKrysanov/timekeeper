@@ -1,3 +1,4 @@
+import {AUTH_IS_LOAD} from './../../constants/authContstants';
 import {ISignInForm} from '../../../components/SignIn/types';
 import {IUser} from '../../../components/SignUp/types';
 import {
@@ -6,8 +7,10 @@ import {
   SIGNIN_FAIL,
   SIGNIN_SUCCESS,
   SIGNOUT,
+  SIGNOUT_FAIL,
   SIGNOUT_SUCCESS,
   SIGNUP,
+  SIGNUP_FAIL,
   SIGNUP_SUCCESS,
 } from '../../constants/authContstants';
 import {IAuth} from '../../reducers/authReducer/types';
@@ -22,6 +25,11 @@ export interface ISignUpSuccessAction {
   payload: IAuth;
 }
 
+export interface ISignUpFailAction {
+  type: typeof SIGNUP_FAIL;
+  payload: string | null;
+}
+
 export interface ISignInAction {
   type: typeof SIGNIN;
   payload: ISignInForm;
@@ -34,7 +42,7 @@ export interface ISignInSuccessAction {
 
 export interface ISignInFailAction {
   type: typeof SIGNIN_FAIL;
-  payload: string;
+  payload: string | null;
 }
 
 export interface ISignOutAction {
@@ -45,17 +53,30 @@ export interface ISignOutSuccessAction {
   type: typeof SIGNOUT_SUCCESS;
 }
 
+export interface ISignOutFailAction {
+  type: typeof SIGNOUT_FAIL;
+  payload: string | null;
+}
+
 export interface ISaveUserAuthDataAction {
   type: typeof AUTH_SUCCESS;
   payload: IAuth;
 }
 
+export interface IAuthIsLoadAction {
+  type: typeof AUTH_IS_LOAD;
+  payload: boolean;
+}
+
 export type AuthActionsTypes =
   | ISignUpAction
   | ISignUpSuccessAction
+  | ISignUpFailAction
   | ISignInAction
   | ISignInSuccessAction
   | ISignInFailAction
   | ISignOutAction
   | ISignOutSuccessAction
-  | ISaveUserAuthDataAction;
+  | ISignOutFailAction
+  | ISaveUserAuthDataAction
+  | IAuthIsLoadAction;

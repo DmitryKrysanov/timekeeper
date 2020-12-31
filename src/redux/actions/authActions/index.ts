@@ -2,6 +2,7 @@ import {ISignInForm} from '../../../components/SignIn/types';
 import {IUser} from '../../../components/SignUp/types';
 import {
   AUTH_SUCCESS,
+  AUTH_IS_LOAD,
   SIGNUP_SUCCESS,
   SIGNIN_SUCCESS,
   SIGNIN,
@@ -9,6 +10,8 @@ import {
   SIGNOUT_SUCCESS,
   SIGNOUT,
   SIGNIN_FAIL,
+  SIGNUP_FAIL,
+  SIGNOUT_FAIL,
 } from '../../constants/authContstants';
 import {IAuth} from '../../reducers/authReducer/types';
 import {
@@ -20,6 +23,9 @@ import {
   ISignOutAction,
   ISaveUserAuthDataAction,
   ISignInFailAction,
+  ISignUpFailAction,
+  ISignOutFailAction,
+  IAuthIsLoadAction,
 } from './types';
 
 export const signUp = (userData: IUser): ISignUpAction => {
@@ -32,6 +38,13 @@ export const signUp = (userData: IUser): ISignUpAction => {
 export const signUpSuccess = (payload: IAuth): ISignUpSuccessAction => {
   return {
     type: SIGNUP_SUCCESS,
+    payload,
+  };
+};
+
+export const signUpFail = (payload: string | null): ISignUpFailAction => {
+  return {
+    type: SIGNUP_FAIL,
     payload,
   };
 };
@@ -50,7 +63,7 @@ export const signInSuccess = (payload: IAuth): ISignInSuccessAction => {
   };
 };
 
-export const signInFail = (payload: string): ISignInFailAction => {
+export const signInFail = (payload: string | null): ISignInFailAction => {
   return {
     type: SIGNIN_FAIL,
     payload,
@@ -69,9 +82,23 @@ export const signOutSuccess = (): ISignOutSuccessAction => {
   };
 };
 
+export const signOutFail = (payload: string | null): ISignOutFailAction => {
+  return {
+    type: SIGNOUT_FAIL,
+    payload,
+  };
+};
+
 export const saveUserAuthData = (userData: IAuth): ISaveUserAuthDataAction => {
   return {
     type: AUTH_SUCCESS,
     payload: userData,
+  };
+};
+
+export const authIsLoad = (payload: boolean): IAuthIsLoadAction => {
+  return {
+    type: AUTH_IS_LOAD,
+    payload,
   };
 };

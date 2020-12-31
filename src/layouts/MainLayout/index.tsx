@@ -1,4 +1,5 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {
   Aside,
@@ -8,12 +9,27 @@ import {
   Settings,
   Statistics,
 } from '../../components';
+import PrimaryButton from '../../components/UI/PrimaryButton';
 import * as ROUTES from '../../constants/routes';
+import {signOut} from '../../redux/actions/authActions';
 
 export default function MainLayout() {
+  const dispatch = useDispatch();
+  const onSignOutClick = () => {
+    dispatch(signOut());
+  };
   return (
     <div>
       Main
+      <PrimaryButton
+        isLoad={false}
+        color="primary"
+        variant="contained"
+        onClick={onSignOutClick}
+        type="button"
+      >
+        Sign Out
+      </PrimaryButton>
       <Aside />
       <Header />
       <Switch>

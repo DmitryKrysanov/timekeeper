@@ -63,6 +63,7 @@ module.exports = {
     'react/jsx-boolean-value': 0,
     'react/no-unused-prop-types': 0,
     'no-unneeded-ternary': 0,
-    'import/no-cycle': 0
+    'import/no-cycle': 0,
+    'no-fallthrough': 0
   },
 };
