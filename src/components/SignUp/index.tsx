@@ -10,7 +10,12 @@ import {Container, Hint, Terms} from './styles/SignUp';
 import {ISignUpForm, IUser} from './types';
 import {Columns} from '../UI/Grid';
 
-export default function SignUp(): JSX.Element {
+interface ISignUp {
+  signUp: (data: IUser) => void;
+  isLoad: boolean;
+}
+
+export default function SignUp({signUp, isLoad}: ISignUp): JSX.Element {
   const methods = useForm<ISignUpForm>();
   const {handleSubmit, control, errors} = methods;
 
@@ -23,7 +28,7 @@ export default function SignUp(): JSX.Element {
       _id: null,
       imageUrl: null,
     };
-    console.log(user);
+    signUp(user);
   };
 
   return (
@@ -44,13 +49,15 @@ export default function SignUp(): JSX.Element {
                   },
                 }}
                 defaultValue={null}
-                render={(props) => {
+                render={(controllerProps) => {
                   return (
                     <TextField
                       variant="filled"
                       label="First Name"
                       name="firstName"
-                      onChange={(e) => props.onChange(e.target.value)}
+                      onChange={(event) =>
+                        controllerProps.onChange(event.target.value)
+                      }
                       errorMessage={
                         errors.firstName && errors.firstName.message
                       }
@@ -62,13 +69,15 @@ export default function SignUp(): JSX.Element {
                 name="lastName"
                 control={control}
                 defaultValue={null}
-                render={(props) => {
+                render={(controllerProps) => {
                   return (
                     <TextField
                       variant="filled"
                       label="Last Name"
                       name="lastName"
-                      onChange={(e) => props.onChange(e.target.value)}
+                      onChange={(event) =>
+                        controllerProps.onChange(event.target.value)
+                      }
                       errorMessage={errors.lastName && errors.lastName.message}
                     />
                   );
@@ -88,14 +97,16 @@ export default function SignUp(): JSX.Element {
                 },
               }}
               defaultValue={null}
-              render={(props) => {
+              render={(controllerProps) => {
                 return (
                   <TextField
                     variant="filled"
                     label="Email"
                     name="email"
                     type="text"
-                    onChange={(e) => props.onChange(e.target.value)}
+                    onChange={(event) =>
+                      controllerProps.onChange(event.target.value)
+                    }
                     errorMessage={errors.email && errors.email.message}
                   />
                 );
@@ -114,14 +125,16 @@ export default function SignUp(): JSX.Element {
                 },
               }}
               defaultValue={null}
-              render={(props) => {
+              render={(controllerProps) => {
                 return (
                   <TextField
                     variant="filled"
                     label="Password"
                     name="password"
                     type="password"
-                    onChange={(e) => props.onChange(e.target.value)}
+                    onChange={(event) =>
+                      controllerProps.onChange(event.target.value)
+                    }
                     errorMessage={errors.password && errors.password.message}
                   />
                 );
@@ -132,7 +145,7 @@ export default function SignUp(): JSX.Element {
             color="primary"
             variant="contained"
             type="submit"
-            isLoad={false}
+            isLoad={isLoad}
           >
             Sign Up
           </PrimaryButton>

@@ -9,12 +9,20 @@ import TextField from '../UI/PrimaryTextField';
 import {Container, Hint, Tip} from './styles/ForgotPassword';
 import {IForgotPasswordForm} from './types';
 
-export default function ForgotPassword() {
+interface IForgotPassword {
+  forgotPassword: (data: IForgotPasswordForm) => void;
+  isLoad: boolean;
+}
+
+export default function ForgotPassword({
+  forgotPassword,
+  isLoad,
+}: IForgotPassword): JSX.Element {
   const methods = useForm<IForgotPasswordForm>();
   const {handleSubmit, control, errors} = methods;
 
   const onSubmit = (data: IForgotPasswordForm) => {
-    console.log(data);
+    forgotPassword(data);
   };
 
   return (
@@ -28,13 +36,15 @@ export default function ForgotPassword() {
               control={control}
               rules={{required: 'Email is Required'}}
               defaultValue={null}
-              render={(props) => {
+              render={(controllerProps) => {
                 return (
                   <TextField
                     variant="filled"
                     label="Email"
                     name="email"
-                    onChange={(e) => props.onChange(e.target.value)}
+                    onChange={(event) =>
+                      controllerProps.onChange(event.target.value)
+                    }
                     errorMessage={errors.email && errors.email.message}
                   />
                 );
@@ -49,7 +59,7 @@ export default function ForgotPassword() {
             color="primary"
             variant="contained"
             type="submit"
-            isLoad={false}
+            isLoad={isLoad}
           >
             Sent password reset email
           </PrimaryButton>

@@ -9,12 +9,17 @@ import TextField from '../UI/PrimaryTextField';
 import {Container, Hint} from './styles/SignIn';
 import {ISignInForm} from './types';
 
-export default function SignIn({signIn}: any): JSX.Element {
+interface ISignIn {
+  signIn: (data: ISignInForm) => void;
+  isLoad: boolean;
+}
+
+export default function SignIn({signIn, isLoad}: ISignIn): JSX.Element {
   const methods = useForm<ISignInForm>();
   const {handleSubmit, control, errors} = methods;
 
   const onSubmit = (data: ISignInForm) => {
-    console.log(data);
+    signIn(data);
   };
 
   return (
@@ -28,13 +33,15 @@ export default function SignIn({signIn}: any): JSX.Element {
               control={control}
               defaultValue={false}
               rules={{required: 'Email is Required'}}
-              render={(props) => {
+              render={(controllerProps) => {
                 return (
                   <TextField
                     variant="filled"
                     label="Email"
                     name="email"
-                    onChange={(e) => props.onChange(e.target.value)}
+                    onChange={(event) =>
+                      controllerProps.onChange(event.target.value)
+                    }
                     errorMessage={errors.email && errors.email.message}
                   />
                 );
@@ -47,14 +54,16 @@ export default function SignIn({signIn}: any): JSX.Element {
               control={control}
               defaultValue={false}
               rules={{required: 'Password is Required'}}
-              render={(props) => {
+              render={(controllerProps) => {
                 return (
                   <TextField
                     variant="filled"
                     label="Password"
                     name="password"
                     type="password"
-                    onChange={(e) => props.onChange(e.target.value)}
+                    onChange={(event) =>
+                      controllerProps.onChange(event.target.value)
+                    }
                     errorMessage={errors.password && errors.password.message}
                   />
                 );
@@ -69,7 +78,7 @@ export default function SignIn({signIn}: any): JSX.Element {
             color="primary"
             variant="contained"
             type="submit"
-            isLoad={false}
+            isLoad={isLoad}
           >
             Sign In
           </PrimaryButton>
