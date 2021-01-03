@@ -15,8 +15,8 @@ const mockAuth = {
 function* signInWorker(action: ISignInAction) {
   try {
     yield put(authIsLoad(true));
-    const auth = yield call(authApi.signIn, action.payload);
-    // const auth = mockAuth;
+    // const auth = yield call(authApi.signIn, action.payload);
+    const auth = mockAuth;
     yield put(signInSuccess(auth));
     yield call(createUserInformation, auth);
     yield put(authIsLoad(false));

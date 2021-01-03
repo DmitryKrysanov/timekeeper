@@ -11,11 +11,14 @@ export const Container = styled.div<{type: string}>`
   box-shadow: 0px 8px 16px 0px rgba(50, 50, 50, 0.2);
 
   position: absolute;
+  left: 50%;
   bottom: 24px;
+  z-index: 1000;
+  transform: translateX(-50%);
 
   ${({type}) =>
     type === 'error' &&
     css`
       background-color: red;
-    `}
+    `};
 `;
