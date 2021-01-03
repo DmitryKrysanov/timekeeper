@@ -12,8 +12,8 @@ export default function ProjectLayout() {
   return (
     <div>
       Project
-      <Aside />
-      <Header />
+      {/* <Aside /> */}
+      {/* <Header /> */}
       <div>
         <Switch>
           <Route path="/project/id/timer" component={Timer} />
