@@ -16,6 +16,7 @@ import {
   GET_PROJECT_BY_ID_SUCCESS,
   GET_PROJECT_BY_ID_FAIL,
   PROJECTS_IS_LOAD,
+  PROJECTS_IS_UPDATED,
 } from '../../constants/projectConstants';
 
 export interface IGetProjectsAction {
@@ -34,10 +35,12 @@ export interface IGetProjectsFailAction {
 
 export interface ICreateProjectAction {
   type: typeof CREATE_PROJECT;
+  payload: IProject;
 }
 
 export interface ICreateProjectSuccessAction {
   type: typeof CREATE_PROJECT_SUCCESS;
+  payload: IProject;
 }
 
 export interface ICreateProjectFailAction {
@@ -89,6 +92,11 @@ export interface IProjectsIsLoadAction {
   payload: boolean;
 }
 
+export interface IProjectsIsUpdatedAction {
+  type: typeof PROJECTS_IS_UPDATED;
+  payload: boolean;
+}
+
 export type ProjectActionsTypes =
   | IGetProjectsAction
   | IGetProjectsSuccessAction
@@ -105,4 +113,5 @@ export type ProjectActionsTypes =
   | IGetProjectByIdAction
   | IGetProjectByIdSuccessAction
   | IGetProjectByIdFailAction
-  | IProjectsIsLoadAction;
+  | IProjectsIsLoadAction
+  | IProjectsIsUpdatedAction;
