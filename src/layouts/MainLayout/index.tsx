@@ -9,6 +9,7 @@ import {
   Settings,
   Statistics,
 } from '../../components';
+import CreateProject from '../../components/CreateProject';
 import MobileMenu from '../../components/MobileMenu';
 import {IProject} from '../../components/Projects/types';
 import Alert from '../../components/UI/Alert';
@@ -47,6 +48,7 @@ interface IConnectedProps {
   projects: IProject[];
   isProjectLoad: boolean;
   error: string;
+  projectsIsUpdated: boolean;
 }
 
 type ProjectProps = IConnectedProps & ReturnType<typeof mapDispatchToProps>;
@@ -56,22 +58,33 @@ function MainLayout({
   isProjectLoad,
   error,
   getProjects,
+  projectsIsUpdated,
 }: ProjectProps) {
   const {page}: any = useParams();
   const [isAsideOpen, setIsAsideOpen] = useState(false);
+  const [isCreateProject, setIsCreateProject] = useState(false);
 
   useEffect(() => {
     getProjects();
-  }, []);
+  }, [projectsIsUpdated]);
 
   const openAsideHandler = () => {
     setIsAsideOpen(!isAsideOpen);
+  };
+
+  const openCreateProjectHandler = () => {
+    setIsCreateProject(!isCreateProject);
   };
 
   const containerWidth = window.innerWidth;
 
   return (
     <>
+      <CreateProject
+        isCreateProject={isCreateProject}
+        openCreateProjectHandler={openCreateProjectHandler}
+        isProjectLoad={isProjectLoad}
+      />
       {/* <MobileMenu
         activePage={page}
         menu={menu}
@@ -79,7 +92,11 @@ function MainLayout({
         isOpen={isAsideOpen}
       /> */}
       <Container>
-        <Header title={page} openAsideHandler={openAsideHandler} />
+        <Header
+          title={page}
+          openAsideHandler={openAsideHandler}
+          openCreateProjectHandler={openCreateProjectHandler}
+        />
         <Aside activePage={page} menu={menu} header="logo" />
         <Content>
           <Switch>
@@ -105,6 +122,7 @@ const mapStateToProps = (state: any) => ({
   projects: state.project.projects,
   isProjectLoad: state.project.isProjectLoad,
   error: state.project.error,
+  projectsIsUpdated: state.project.projectsIsUpdated,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

@@ -1,13 +1,26 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {signOut} from '../../redux/actions/authActions';
 import Icon from '../UI/Icon';
+import PrimaryButton from '../UI/PrimaryButton';
 import {Container, HeaderTitle, MenuIcon} from './styles/Header';
 
 interface IHeader {
   title: string;
   openAsideHandler: () => void;
+  openCreateProjectHandler: () => void;
 }
 
-export default function Header({title, openAsideHandler}: IHeader) {
+export default function Header({
+  title,
+  openAsideHandler,
+  openCreateProjectHandler,
+}: IHeader) {
+  const dispatch = useDispatch();
+
+  const onSignOut = () => {
+    dispatch(signOut());
+  };
   return (
     <Container>
       {/* <MenuIcon
@@ -22,6 +35,24 @@ export default function Header({title, openAsideHandler}: IHeader) {
         />
       </MenuIcon> */}
       <HeaderTitle>{title}</HeaderTitle>
+      <PrimaryButton
+        isLoad={false}
+        variant="contained"
+        color="primary"
+        type="button"
+        onClick={openCreateProjectHandler}
+      >
+        Create Project
+      </PrimaryButton>
+      <PrimaryButton
+        isLoad={false}
+        variant="contained"
+        color="primary"
+        type="button"
+        onClick={onSignOut}
+      >
+        Sign Out
+      </PrimaryButton>
     </Container>
   );
 }

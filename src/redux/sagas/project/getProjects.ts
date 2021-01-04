@@ -1,11 +1,13 @@
-import {delay, put, takeEvery} from 'redux-saga/effects';
+import {call, delay, put, takeEvery} from 'redux-saga/effects';
 import {GET_PROJECTS} from '../../constants/projectConstants';
 import {IProject} from '../../../components/Projects/types';
 import {
   getProjectsFail,
   getProjectsSuccess,
   projectsIsLoad,
+  projectsIsUpdated,
 } from '../../actions/projectActions';
+import {projectApi} from '../../../api';
 
 const mockProjects: IProject[] = [
   {
@@ -41,8 +43,10 @@ const mockProjects: IProject[] = [
 function* getProjectsWorker() {
   try {
     yield put(projectsIsLoad(true));
-    const projects = mockProjects;
+    const projects = yield call(projectApi.getProjects);
+    console.log(projects);
     yield put(getProjectsSuccess(projects));
+    yield put(projectsIsUpdated(true));
     yield put(projectsIsLoad(false));
   } catch (error) {
     yield put(projectsIsLoad(false));

@@ -2,6 +2,7 @@ import {
   GET_PROJECTS_FAIL,
   GET_PROJECTS_SUCCESS,
   PROJECTS_IS_LOAD,
+  PROJECTS_IS_UPDATED,
 } from '../../constants/projectConstants';
 import {ProjectActionsTypes} from '../../actions/projectActions/types';
 
@@ -10,6 +11,7 @@ const initialState = {
   isProjectLoad: false,
   activeProject: null,
   error: null,
+  projectsIsUpdated: false,
 };
 
 export const projectReducer = (
@@ -21,6 +23,11 @@ export const projectReducer = (
       return {
         ...state,
         isProjectLoad: action.payload,
+      };
+    case PROJECTS_IS_UPDATED:
+      return {
+        ...state,
+        projectsIsUpdated: action.payload,
       };
     case GET_PROJECTS_SUCCESS:
       return {
