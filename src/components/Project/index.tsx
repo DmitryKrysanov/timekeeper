@@ -1,29 +1,41 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import {Switch, Route, Redirect, useParams, Link} from 'react-router-dom';
 import {Timer, ProjectStatistics, ProjectSettings} from '..';
 import * as ROUTES from '../../constants/routes';
+import {
+  getProjectById,
+  getProjectByIdSuccess,
+} from '../../redux/actions/projectActions';
 
 export default function Project() {
+  const dispatch = useDispatch();
   const {id}: any = useParams();
+
+  useEffect(() => {
+    dispatch(getProjectById(id));
+    return () => {
+      dispatch(getProjectByIdSuccess(null));
+    };
+  }, []);
+
   return (
     <>
-      Project
-      <Link to={`${ROUTES.PROJECT}/${id}/timer`}>Timer</Link>
-      <Link to={`${ROUTES.PROJECT}/${id}/project-statistics`}>
-        Project Statistics
-      </Link>
-      <Link to={`${ROUTES.PROJECT}/${id}/project-settings`}>
-        Project Settings
-      </Link>
       <Switch>
-        <Route path={`${ROUTES.PROJECT}/${id}/timer`} component={Timer} />
         <Route
-          path={`${ROUTES.PROJECT}/${id}/project-statistics`}
-          component={ProjectStatistics}
+          path={`${ROUTES.PROJECTS}/${id}/timer`}
+          component={Timer}
+          exact
         />
         <Route
-          path={`${ROUTES.PROJECT}/${id}/project-settings`}
+          path={`${ROUTES.PROJECTS}/${id}/project-activity`}
+          component={ProjectStatistics}
+          exact
+        />
+        <Route
+          path={`${ROUTES.PROJECTS}/${id}/project-settings`}
           component={ProjectSettings}
+          exact
         />
         <Redirect to={`${ROUTES.PROJECT}/${id}/timer`} />
       </Switch>

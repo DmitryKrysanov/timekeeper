@@ -3,6 +3,7 @@ import {watchSignIn} from './auth/signIn';
 import {watchSignOut} from './auth/signOut';
 import {watchSignUp} from './auth/signUp';
 import {watchCreateProject} from './project/createProject';
+import {watchGetProjectById} from './project/getProjectById';
 import {watchGetProjects} from './project/getProjects';
 
 export default function* rootSaga() {
@@ -12,5 +13,6 @@ export default function* rootSaga() {
     watchSignOut(),
     watchGetProjects(),
     watchCreateProject(),
+    watchGetProjectById(),
   ]);
 }

@@ -4,7 +4,10 @@ import PrimaryIconButton from '../../UI/IconButton';
 export const Container = styled.header`
   height: 72px;
   padding: 0 24px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 168px 36px;
+  column-gap: 24px;
+  align-content: center;
   align-items: center;
 
   grid-area: header;
@@ -25,4 +28,11 @@ export const MenuIcon = styled(PrimaryIconButton)`
 
 export const HeaderTitle = styled.h2`
   text-transform: capitalize;
+`;
+
+export const Avatar = styled.img`
+  width: 36px;
+  height: 36px;
+  display: block;
+  border-radius: 50%;
 `;

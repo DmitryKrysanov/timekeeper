@@ -35,9 +35,9 @@ export const projectApi = {
       .get(`/projects/?uid=${uid}`)
       .then((response) => response.data);
   },
-  // getProjectById(eventId: any) {
-  //   return instance.get(`/projects/${eventId}`).then((response) => response.data);
-  // },
+  getProjectById(id: string) {
+    return instance.get(`/projects/${id}`).then((response) => response.data);
+  },
   createProject(payload: IProject) {
     const uid = Cookies.get('uid');
     const newProject = {

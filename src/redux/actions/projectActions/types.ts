@@ -76,15 +76,17 @@ export interface IDeleteProjectFailAction {
 
 export interface IGetProjectByIdAction {
   type: typeof GET_PROJECT_BY_ID;
+  payload: string;
 }
 
 export interface IGetProjectByIdSuccessAction {
   type: typeof GET_PROJECT_BY_ID_SUCCESS;
+  payload: IProject | null;
 }
 
 export interface IGetProjectByIdFailAction {
   type: typeof GET_PROJECT_BY_ID_FAIL;
-  payload: string;
+  payload: string | null;
 }
 
 export interface IProjectsIsLoadAction {

@@ -8,11 +8,17 @@ import {
   CREATE_PROJECT_FAIL,
   CREATE_PROJECT_SUCCESS,
   PROJECTS_IS_UPDATED,
+  GET_PROJECT_BY_ID,
+  GET_PROJECT_BY_ID_SUCCESS,
+  GET_PROJECT_BY_ID_FAIL,
 } from '../../constants/projectConstants';
 import {
   ICreateProjectAction,
   ICreateProjectFailAction,
   ICreateProjectSuccessAction,
+  IGetProjectByIdAction,
+  IGetProjectByIdFailAction,
+  IGetProjectByIdSuccessAction,
   IGetProjectsAction,
   IGetProjectsFailAction,
   IGetProjectsSuccessAction,
@@ -40,6 +46,31 @@ export const getProjectsFail = (
 ): IGetProjectsFailAction => {
   return {
     type: GET_PROJECTS_FAIL,
+    payload,
+  };
+};
+
+export const getProjectById = (payload: string): IGetProjectByIdAction => {
+  return {
+    type: GET_PROJECT_BY_ID,
+    payload,
+  };
+};
+
+export const getProjectByIdSuccess = (
+  payload: IProject | null,
+): IGetProjectByIdSuccessAction => {
+  return {
+    type: GET_PROJECT_BY_ID_SUCCESS,
+    payload,
+  };
+};
+
+export const getProjectByIdFail = (
+  payload: string | null,
+): IGetProjectByIdFailAction => {
+  return {
+    type: GET_PROJECT_BY_ID_FAIL,
     payload,
   };
 };
