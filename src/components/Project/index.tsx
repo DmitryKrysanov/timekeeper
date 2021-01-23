@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Switch, Route, Redirect, useParams, Link} from 'react-router-dom';
 import {Timer, ProjectStatistics, ProjectSettings} from '..';
 import * as ROUTES from '../../constants/routes';
@@ -19,12 +19,16 @@ export default function Project() {
     };
   }, []);
 
+  const activeProject = useSelector(
+    (state: any) => state.project.activeProject,
+  );
+
   return (
     <>
       <Switch>
         <Route
           path={`${ROUTES.PROJECTS}/${id}/timer`}
-          component={Timer}
+          component={() => <Timer project={activeProject} />}
           exact
         />
         <Route
