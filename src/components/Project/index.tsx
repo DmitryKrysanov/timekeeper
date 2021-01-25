@@ -33,12 +33,12 @@ export default function Project() {
         />
         <Route
           path={`${ROUTES.PROJECTS}/${id}/project-activity`}
-          component={ProjectStatistics}
+          component={() => <ProjectStatistics />}
           exact
         />
         <Route
           path={`${ROUTES.PROJECTS}/${id}/project-settings`}
-          component={ProjectSettings}
+          component={() => <ProjectSettings project={activeProject} />}
           exact
         />
         <Redirect to={`${ROUTES.PROJECT}/${id}/timer`} />
