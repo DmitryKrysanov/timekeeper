@@ -12,7 +12,10 @@ export const CardTitle = styled.h2`
   margin-bottom: 16px;
 `;
 
-export const CardRow = styled.div`
+export const CardRow = styled.div<{mb?: number}>`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: ${({mb}) => `${mb}px` || 0};
 `;
