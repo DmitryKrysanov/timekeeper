@@ -1,14 +1,15 @@
 export interface IPeriod {
-  start: string;
-  end: string;
+  periodId: string;
+  start: any;
+  end: any;
   duration: number;
 }
 
 export interface ITask {
-  name: string;
-  periods: IPeriod[];
+  taskId: string;
+  taskName: string;
   totalDuration: number;
-  id: string;
+  periods: IPeriod[];
 }
 
 export interface IProject {

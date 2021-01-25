@@ -17,7 +17,6 @@ export default function App(): JSX.Element {
         isAuth={Boolean(uid)}
       >
         <MainLayout />
-        {/* <MainPage /> */}
       </ProtectedRoute>
       <ProtectedRoute path="/auth/:method" redirect="/main" isAuth={!uid}>
         <AuthContainer />

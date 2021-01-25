@@ -1,12 +1,10 @@
 import React from 'react';
-import {IMenuListItem} from '../../layouts/MainLayout';
-import Aside from '../Aside';
 import {Container} from './styles/MobileMenu';
 
 interface IMobileMenu {
   isOpen: boolean;
   activePage: string;
-  menu: IMenuListItem[];
+  menu: any;
   header: 'logo' | 'back';
 }
 
@@ -18,7 +16,7 @@ export default function MobileMenu({
 }: IMobileMenu) {
   return (
     <Container isOpen={isOpen}>
-      <Aside activePage={activePage} menu={menu} header="logo" />
+      {/* <Aside activePage={activePage} mainMenu={menu} projectMeny header="logo" /> */}
     </Container>
   );
 }

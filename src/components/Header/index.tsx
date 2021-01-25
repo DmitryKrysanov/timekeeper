@@ -1,9 +1,8 @@
-import React from 'react';
-import {useDispatch} from 'react-redux';
-import {signOut} from '../../redux/actions/authActions';
+import React, {useState} from 'react';
 import Icon from '../UI/Icon';
 import PrimaryButton from '../UI/PrimaryButton';
-import {Container, HeaderTitle, MenuIcon} from './styles/Header';
+import PrimaryTextField from '../UI/PrimaryTextField';
+import {Avatar, Container, HeaderTitle, MenuIcon} from './styles/Header';
 
 interface IHeader {
   title: string;
@@ -16,11 +15,7 @@ export default function Header({
   openAsideHandler,
   openCreateProjectHandler,
 }: IHeader) {
-  const dispatch = useDispatch();
-
-  const onSignOut = () => {
-    dispatch(signOut());
-  };
+  const [subname, setSubname] = useState('');
   return (
     <Container>
       {/* <MenuIcon
@@ -34,25 +29,29 @@ export default function Header({
           color="#666"
         />
       </MenuIcon> */}
+
       <HeaderTitle>{title}</HeaderTitle>
-      <PrimaryButton
-        isLoad={false}
-        variant="contained"
-        color="primary"
-        type="button"
-        onClick={openCreateProjectHandler}
-      >
-        Create Project
-      </PrimaryButton>
-      <PrimaryButton
-        isLoad={false}
-        variant="contained"
-        color="primary"
-        type="button"
-        onClick={onSignOut}
-      >
-        Sign Out
-      </PrimaryButton>
+
+      <PrimaryTextField
+        variant="standard"
+        label="Search"
+        name="search"
+        type="text"
+        onChange={(event) => setSubname(event.currentTarget.value)}
+      />
+
+      {title === 'projects' ? (
+        <PrimaryButton
+          isLoad={false}
+          variant="contained"
+          color="primary"
+          type="button"
+          onClick={openCreateProjectHandler}
+        >
+          Create Project
+        </PrimaryButton>
+      ) : null}
+      <Avatar src="http://placehold.it/36x36" alt="avatar" />
     </Container>
   );
 }

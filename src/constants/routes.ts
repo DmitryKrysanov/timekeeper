@@ -6,7 +6,7 @@ export const PROJECTS = '/main/projects';
 export const STATISTICS = '/main/statistics';
 export const SETTINGS = '/main/settings';
 
-export const PROJECT = '/main/project';
+export const PROJECT = '/main/projects';
 export const TIMER = '/timer';
 export const PROJECT_STATISTICS = '/project-statistics';
 export const PROJECT_SETTINGS = '/project-settings';
