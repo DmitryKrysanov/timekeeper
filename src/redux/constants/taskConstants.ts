@@ -1,0 +1,19 @@
+export const CREATE_TASK = 'CREATE_TASK';
+export const CREATE_TASK_SUCCESS = 'CREATE_TASK_SUCCESS';
+export const CREATE_TASK_FAIL = 'CREATE_TASK_FAIL';
+
+export const EDIT_TASK = 'EDIT_TASK';
+export const EDIT_TASK_SUCCESS = 'EDIT_TASK_SUCCESS';
+export const EDIT_TASK_FAIL = 'EDIT_TASK_FAIL';
+
+export const DELETE_TASK = 'DELETE_TASK';
+export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS';
+export const DELETE_TASK_FAIL = 'DELETE_TASK_FAIL';
+
+export const START_TASK = 'START_TASK';
+export const START_TASK_SUCCESS = 'START_TASK_SUCCESS';
+export const START_TASK_FAIL = 'START_TASK_FAIL';
+
+export const STOP_TASK = 'STOP_TASK';
+export const STOP_TASK_SUCCESS = 'STOP_TASK_SUCCESS';
+export const STOP_TASK_FAIL = 'STOP_TASK_FAIL';

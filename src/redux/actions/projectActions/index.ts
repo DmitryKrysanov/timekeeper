@@ -11,11 +11,17 @@ import {
   GET_PROJECT_BY_ID,
   GET_PROJECT_BY_ID_SUCCESS,
   GET_PROJECT_BY_ID_FAIL,
+  EDIT_PROJECT,
+  EDIT_PROJECT_SUCCESS,
+  EDIT_PROJECT_FAIL,
 } from '../../constants/projectConstants';
 import {
   ICreateProjectAction,
   ICreateProjectFailAction,
   ICreateProjectSuccessAction,
+  IEditProjectAction,
+  IEditProjectFailAction,
+  IEditProjectSuccessAction,
   IGetProjectByIdAction,
   IGetProjectByIdFailAction,
   IGetProjectByIdSuccessAction,
@@ -99,6 +105,27 @@ export const createProjecttFail = (
     payload,
   };
 };
+
+export const editProject = (payload: IProject): IEditProjectAction => ({
+  type: EDIT_PROJECT,
+  payload,
+});
+
+export const editProjectSuccess = (
+  payload: IProject,
+): IEditProjectSuccessAction => {
+  return {
+    type: EDIT_PROJECT_SUCCESS,
+    payload,
+  };
+};
+
+export const editProjectFail = (
+  payload: string | null,
+): IEditProjectFailAction => ({
+  type: EDIT_PROJECT_FAIL,
+  payload,
+});
 
 export const projectsIsLoad = (payload: boolean): IProjectsIsLoadAction => {
   return {type: PROJECTS_IS_LOAD, payload};

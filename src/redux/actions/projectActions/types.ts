@@ -50,15 +50,17 @@ export interface ICreateProjectFailAction {
 
 export interface IEditProjectAction {
   type: typeof EDIT_PROJECT;
+  payload: IProject;
 }
 
 export interface IEditProjectSuccessAction {
   type: typeof EDIT_PROJECT_SUCCESS;
+  payload: IProject;
 }
 
 export interface IEditProjectFailAction {
   type: typeof EDIT_PROJECT_FAIL;
-  payload: string;
+  payload: string | null;
 }
 
 export interface IDeleteProjectAction {
@@ -71,7 +73,7 @@ export interface IDeleteProjectSuccessAction {
 
 export interface IDeleteProjectFailAction {
   type: typeof DELETE_PROJECT_FAIL;
-  payload: string;
+  payload: string | null;
 }
 
 export interface IGetProjectByIdAction {

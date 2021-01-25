@@ -38,9 +38,18 @@ export default function Timer({project}: any) {
     setTaskName(event.currentTarget.value);
   };
 
+  console.log(project);
+
   const onStartClick = () => {
     setIsStart(!isStart);
     console.log(new Date());
+    // const editedProject = {
+    //   ...project,
+    //   tasks: {
+    //     ...tasks,
+    //     periods:
+    //   }
+    // }
   };
 
   const onStopClick = () => {

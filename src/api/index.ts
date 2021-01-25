@@ -46,7 +46,7 @@ export const projectApi = {
     };
     return instance.post('/projects/', newProject);
   },
-  updateProject(project: IProject) {
+  editProject(project: IProject) {
     return instance.put(`/projects/${project._id}`, project);
   },
   deleteProject(projectId: string) {
