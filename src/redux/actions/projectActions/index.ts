@@ -32,11 +32,10 @@ import {
   IProjectsIsUpdatedAction,
 } from './types';
 
-export const getProjects = (): IGetProjectsAction => {
-  return {
-    type: GET_PROJECTS,
-  };
-};
+export const getProjects = (search: string): IGetProjectsAction => ({
+  type: GET_PROJECTS,
+  search,
+});
 
 export const getProjectsSuccess = (
   payload: IProject[],

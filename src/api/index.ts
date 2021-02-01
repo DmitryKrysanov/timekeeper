@@ -29,10 +29,10 @@ export const authApi = {
 };
 
 export const projectApi = {
-  getProjects() {
+  getProjects(search: string) {
     const uid = Cookies.get('uid');
     return instance
-      .get(`/projects/?uid=${uid}`)
+      .get(`/projects/?uid=${uid}&subname=${search}`)
       .then((response) => response.data);
   },
   getProjectById(id: string) {

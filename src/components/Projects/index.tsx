@@ -16,14 +16,14 @@ export default function Projects() {
   );
 
   useEffect(() => {
-    dispatch(getProjects());
-  }, [projectsIsUpdated]);
+    dispatch(getProjects(search));
+  }, [projectsIsUpdated, search]);
 
   return (
     <Container>
       <Header
         title="Projects"
-        search={false}
+        search={true}
         createProject={true}
         setSearch={setSearch}
       />

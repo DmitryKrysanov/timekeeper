@@ -1,4 +1,5 @@
 import {call, delay, put, takeEvery} from 'redux-saga/effects';
+import {IGetProjectsAction} from '../../actions/projectActions/types';
 import {GET_PROJECTS} from '../../constants/projectConstants';
 import {
   getProjectsFail,
@@ -8,10 +9,10 @@ import {
 } from '../../actions/projectActions';
 import {projectApi} from '../../../api';
 
-function* getProjectsWorker() {
+function* getProjectsWorker(action: IGetProjectsAction) {
   try {
     yield put(projectsIsLoad(true));
-    const projects = yield call(projectApi.getProjects);
+    const projects = yield call(projectApi.getProjects, action.search);
     yield put(getProjectsSuccess(projects));
     yield put(projectsIsUpdated(true));
     yield put(projectsIsLoad(false));

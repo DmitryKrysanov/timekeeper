@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 24px;
+  padding: 0 24px;
 `;
 
 export const ProjectList = styled.div`
