@@ -1,4 +1,4 @@
-import {ITask} from './../../../components/Projects/types';
+import {ITask} from '../../../components/Projects/types';
 import {
   CREATE_TASK,
   CREATE_TASK_FAIL,
@@ -9,13 +9,33 @@ import {
   EDIT_TASK,
   EDIT_TASK_FAIL,
   EDIT_TASK_SUCCESS,
+  GET_TASKS,
+  GET_TASKS_FAIL,
+  GET_TASKS_SUCCESS,
   START_TASK,
   START_TASK_FAIL,
   START_TASK_SUCCESS,
   STOP_TASK,
   STOP_TASK_FAIL,
   STOP_TASK_SUCCESS,
+  TASKS_IS_LOAD,
+  TASKS_IS_UPDATED,
 } from '../../constants/taskConstants';
+
+export interface IGetTasksAction {
+  type: typeof GET_TASKS;
+  payload: string;
+}
+
+export interface IGetTasksSuccessAction {
+  type: typeof GET_TASKS_SUCCESS;
+  payload: ITask[];
+}
+
+export interface IGetTasksFailAction {
+  type: typeof GET_TASKS_FAIL;
+  payload: string | null;
+}
 
 export interface ICreateTaskAction {
   type: typeof CREATE_TASK;
@@ -34,6 +54,7 @@ export interface ICreateTaskFailAction {
 
 export interface IEditTaskAction {
   type: typeof EDIT_TASK;
+  payload: ITask;
 }
 
 export interface IEditTaskSuccessAction {
@@ -47,6 +68,7 @@ export interface IEditTaskFailAction {
 
 export interface IDeleteTaskAction {
   type: typeof DELETE_TASK;
+  payload: string;
 }
 
 export interface IDeleteTaskSuccessAction {
@@ -84,7 +106,20 @@ export interface IStopTaskFailAction {
   payload: string | null;
 }
 
+export interface ITasksIsLoadAction {
+  type: typeof TASKS_IS_LOAD;
+  payload: boolean;
+}
+
+export interface ITasksIsUpdatedAction {
+  type: typeof TASKS_IS_UPDATED;
+  payload: boolean;
+}
+
 export type TaskActionsTypes =
+  | IGetTasksAction
+  | IGetTasksSuccessAction
+  | IGetTasksFailAction
   | ICreateTaskAction
   | ICreateTaskSuccessAction
   | ICreateTaskFailAction
@@ -99,4 +134,6 @@ export type TaskActionsTypes =
   | IStartTaskFailAction
   | IStopTaskAction
   | IStopTaskSuccessAction
-  | IStopTaskFailAction;
+  | IStopTaskFailAction
+  | ITasksIsLoadAction
+  | ITasksIsUpdatedAction;

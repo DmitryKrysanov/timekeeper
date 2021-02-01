@@ -2,6 +2,10 @@ export const CREATE_TASK = 'CREATE_TASK';
 export const CREATE_TASK_SUCCESS = 'CREATE_TASK_SUCCESS';
 export const CREATE_TASK_FAIL = 'CREATE_TASK_FAIL';
 
+export const GET_TASKS = 'GET_TASKS';
+export const GET_TASKS_SUCCESS = 'GET_TASKS_SUCCESS';
+export const GET_TASKS_FAIL = 'GET_TASKS_FAIL';
+
 export const EDIT_TASK = 'EDIT_TASK';
 export const EDIT_TASK_SUCCESS = 'EDIT_TASK_SUCCESS';
 export const EDIT_TASK_FAIL = 'EDIT_TASK_FAIL';
@@ -17,3 +21,6 @@ export const START_TASK_FAIL = 'START_TASK_FAIL';
 export const STOP_TASK = 'STOP_TASK';
 export const STOP_TASK_SUCCESS = 'STOP_TASK_SUCCESS';
 export const STOP_TASK_FAIL = 'STOP_TASK_FAIL';
+
+export const TASKS_IS_LOAD = 'TASKS_IS_LOAD';
+export const TASKS_IS_UPDATED = 'TASKS_IS_UPDATED';
