@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
@@ -9,6 +9,7 @@ import {Container, Owner, ProjectCard, ProjectList} from './styles/Projects';
 import {IProject} from './types';
 
 export default function Projects() {
+  const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   const {projectsIsUpdated, isProjectLoad, projects} = useSelector(
     (state: any) => state.project,
@@ -22,9 +23,9 @@ export default function Projects() {
     <Container>
       <Header
         title="Projects"
-        taskSearch={false}
-        projectSearch={true}
+        search={false}
         createProject={true}
+        setSearch={setSearch}
       />
       {isProjectLoad ? (
         <Loader color="primary" />

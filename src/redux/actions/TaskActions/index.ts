@@ -44,9 +44,10 @@ import {
   ITasksIsUpdatedAction,
 } from './types';
 
-export const getTasks = (payload: string): IGetTasksAction => ({
+export const getTasks = (payload: string, search: string): IGetTasksAction => ({
   type: GET_TASKS,
   payload,
+  search,
 });
 
 export const getTasksSuccess = (payload: ITask[]): IGetTasksSuccessAction => ({

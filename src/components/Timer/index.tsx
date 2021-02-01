@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/macro';
 import {getTasks} from '../../redux/actions/taskActions';
@@ -9,6 +9,7 @@ import TaskList from './TaskList';
 
 export default function Timer() {
   const {_id} = useSelector((state: any) => state.project.activeProject);
+  const [search, setSearch] = useState('');
 
   const dispatch = useDispatch();
   const {tasks, isTasksLoad, tasksIsUpdated} = useSelector(
@@ -16,16 +17,16 @@ export default function Timer() {
   );
 
   useEffect(() => {
-    dispatch(getTasks(_id));
-  }, [tasksIsUpdated]); // request sends twice
+    dispatch(getTasks(_id, search));
+  }, [tasksIsUpdated, search]); // request sends twice
 
   return (
     <TimerContainer>
       <Header
         title="Timer"
-        taskSearch={true}
-        projectSearch={false}
+        search={true}
         createProject={false}
+        setSearch={setSearch}
       />
       <NewTask projectId={_id} />
       <DayLoad tasks={tasks} />

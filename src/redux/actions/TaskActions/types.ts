@@ -25,6 +25,7 @@ import {
 export interface IGetTasksAction {
   type: typeof GET_TASKS;
   payload: string;
+  search: string;
 }
 
 export interface IGetTasksSuccessAction {

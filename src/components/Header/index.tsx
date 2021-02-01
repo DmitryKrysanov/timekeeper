@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import Icon from '../UI/Icon';
 import PrimaryIconButton from '../UI/IconButton';
@@ -7,8 +7,8 @@ import PrimaryTextField from '../UI/PrimaryTextField';
 
 interface IHeader {
   title: string;
-  taskSearch: boolean;
-  projectSearch: boolean;
+  search: boolean;
+  setSearch: (search: string) => void;
   createProject: boolean;
   openAsideHandler?: () => void;
   openCreateProjectHandler?: () => void;
@@ -16,23 +16,12 @@ interface IHeader {
 
 export default function Header({
   title,
-  taskSearch,
-  projectSearch,
+  search,
+  setSearch,
   createProject,
   openAsideHandler,
   openCreateProjectHandler,
 }: IHeader) {
-  const [searchProject, setSearchProject] = useState('');
-  const [searchTask, setSearchTask] = useState('');
-
-  const onProjectSearchChange = (event: any) => {
-    setSearchProject(event.currentTarget.value);
-  };
-
-  const onTaskSearchChange = (event: any) => {
-    setSearchTask(event.currentTarget.value);
-  };
-
   return (
     <HeaderContainer>
       <div className="navigation">
@@ -52,25 +41,14 @@ export default function Header({
         <h2 className="title">{title}</h2>
       </div>
       <div className="actions">
-        {projectSearch ? (
+        {search ? (
           <div className="search">
             <PrimaryTextField
               variant="standard"
               label="Search"
               name="search"
               type="text"
-              onChange={onProjectSearchChange}
-            />
-          </div>
-        ) : null}
-        {taskSearch ? (
-          <div className="search">
-            <PrimaryTextField
-              variant="standard"
-              label="Search"
-              name="search"
-              type="text"
-              onChange={onTaskSearchChange}
+              onChange={(event) => setSearch(event.currentTarget.value)}
             />
           </div>
         ) : null}

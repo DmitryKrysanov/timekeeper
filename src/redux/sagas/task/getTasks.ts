@@ -12,7 +12,7 @@ import {GET_TASKS} from '../../constants/taskConstants';
 function* getTasksWorker(action: IGetTasksAction) {
   try {
     yield put(tasksIsLoad(true));
-    const tasks = yield call(taskApi.getTasks, action.payload);
+    const tasks = yield call(taskApi.getTasks, action.payload, action.search);
     yield put(getTasksSuccess(tasks));
     yield put(tasksIsUpdated(true));
     yield put(tasksIsLoad(false));

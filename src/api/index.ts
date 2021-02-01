@@ -55,9 +55,9 @@ export const projectApi = {
 };
 
 export const taskApi = {
-  getTasks(projectId: string) {
+  getTasks(projectId: string, search: string) {
     return instance
-      .get(`/tasks/?projectId=${projectId}`)
+      .get(`/tasks/?projectId=${projectId}&subname=${search}`)
       .then((response) => response.data);
   },
   createTask(payload: ITask) {
