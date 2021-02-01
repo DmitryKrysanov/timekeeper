@@ -18,9 +18,9 @@ export const Container = styled.aside`
   bottom: 0;
   z-index: 10;
 
-  /* @media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     display: none;
-  } */
+  }
 `;
 
 export const Logo = styled.div`
@@ -69,4 +69,8 @@ export const ItemLink = styled(LinkR)`
   cursor: pointer;
 
   display: block;
+`;
+
+export const ActiveProjectName = styled.h3`
+  margin: 24px 8px;
 `;

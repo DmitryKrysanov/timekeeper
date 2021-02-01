@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 interface ICircleBtn {
   children: any;
   color: 'primary' | 'start' | 'stop' | 'transparent';
+  disabled?: boolean;
   onClick: () => void;
 }
 

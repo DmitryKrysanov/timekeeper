@@ -10,6 +10,7 @@ interface IPrimaryTextField {
   errorMessage?: string | undefined;
   register?: any;
   type?: 'text' | 'password';
+  value?: string;
 }
 
 export default function PrimaryTextField({

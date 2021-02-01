@@ -1,10 +1,10 @@
 import {call, delay, put, takeEvery} from 'redux-saga/effects';
 import {ICreateProjectAction} from '../../actions/projectActions/types';
 import {CREATE_PROJECT} from '../../constants/projectConstants';
-import {IProject} from '../../../components/Projects/types';
+// import {IProject} from '../../../components/Projects/types';
 import {
   getProjectsFail,
-  getProjectsSuccess,
+  // getProjectsSuccess,
   projectsIsLoad,
   projectsIsUpdated,
 } from '../../actions/projectActions';

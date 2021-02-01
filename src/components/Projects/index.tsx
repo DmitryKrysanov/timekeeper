@@ -1,25 +1,36 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import {getProjects} from '../../redux/actions/projectActions';
+import Header from '../Header';
 import Loader from '../UI/Loader';
 import {Container, Owner, ProjectCard, ProjectList} from './styles/Projects';
 import {IProject} from './types';
 
-interface IProjects {
-  projects: IProject[];
-  isProjectLoad: boolean;
-}
+export default function Projects() {
+  const dispatch = useDispatch();
+  const {projectsIsUpdated, isProjectLoad, projects} = useSelector(
+    (state: any) => state.project,
+  );
 
-export default function Projects({projects, isProjectLoad}: IProjects) {
+  useEffect(() => {
+    dispatch(getProjects());
+  }, [projectsIsUpdated]);
+
   return (
     <Container>
+      <Header
+        title="Projects"
+        taskSearch={false}
+        projectSearch={true}
+        createProject={true}
+      />
       {isProjectLoad ? (
         <Loader color="primary" />
       ) : (
         <ProjectList>
-          {projects.map((project) => (
+          {projects.map((project: IProject) => (
             <Link to={`${ROUTES.PROJECT}/${project._id}`} key={project._id}>
               <ProjectCard color={project.color}>
                 <h2>{project.name}</h2>

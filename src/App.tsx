@@ -4,11 +4,9 @@ import {Redirect, Switch} from 'react-router-dom';
 import {AuthContainer, MainLayout} from './layouts';
 import * as ROUTES from './constants/routes';
 import {ProtectedRoute} from './helpers/routes';
-import MainPage from './pages/MainPage';
 
 export default function App(): JSX.Element {
   const uid = useSelector((state: any) => state.auth.uid);
-
   return (
     <Switch>
       <ProtectedRoute
