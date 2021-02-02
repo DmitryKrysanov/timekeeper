@@ -6,6 +6,10 @@ import {watchCreateProject} from './project/createProject';
 import {watchEditProject} from './project/editProject';
 import {watchGetProjectById} from './project/getProjectById';
 import {watchGetProjects} from './project/getProjects';
+import {watchCreateTask} from './task/createTask';
+import {watchDeleteTask} from './task/deleteTask';
+import {watchEditTask} from './task/editTask';
+import {watchGetTasks} from './task/getTasks';
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +20,9 @@ export default function* rootSaga() {
     watchCreateProject(),
     watchGetProjectById(),
     watchEditProject(),
+    watchGetTasks(),
+    watchCreateTask(),
+    watchEditTask(),
+    watchDeleteTask(),
   ]);
 }

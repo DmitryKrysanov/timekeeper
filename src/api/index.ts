@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import {IProject} from '../components/Projects/types';
+import {IProject, ITask} from '../components/Projects/types';
 import {ISignInForm} from '../components/SignIn/types';
 import {IUser} from '../components/SignUp/types';
 
@@ -29,10 +29,10 @@ export const authApi = {
 };
 
 export const projectApi = {
-  getProjects() {
+  getProjects(search: string) {
     const uid = Cookies.get('uid');
     return instance
-      .get(`/projects/?uid=${uid}`)
+      .get(`/projects/?uid=${uid}&subname=${search}`)
       .then((response) => response.data);
   },
   getProjectById(id: string) {
@@ -42,7 +42,7 @@ export const projectApi = {
     const uid = Cookies.get('uid');
     const newProject = {
       ...payload,
-      uid,
+      owner: uid,
     };
     return instance.post('/projects/', newProject);
   },
@@ -51,6 +51,28 @@ export const projectApi = {
   },
   deleteProject(projectId: string) {
     return instance.delete(`/projects/${projectId}`);
+  },
+};
+
+export const taskApi = {
+  getTasks(projectId: string, search: string) {
+    return instance
+      .get(`/tasks/?projectId=${projectId}&subname=${search}`)
+      .then((response) => response.data);
+  },
+  createTask(payload: ITask) {
+    const uid = Cookies.get('uid');
+    const newTask = {
+      ...payload,
+      userId: uid,
+    };
+    return instance.post(`/tasks/`, newTask).then((response) => response.data);
+  },
+  editTask(task: ITask) {
+    return instance.put(`/tasks/${task._id}`, task);
+  },
+  deleteTask(taskId: string) {
+    return instance.delete(`/tasks/${taskId}`);
   },
 };
 

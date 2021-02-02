@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 interface ICircleBtn {
   children: any;
   color: 'primary' | 'start' | 'stop' | 'transparent';
+  disabled?: boolean;
   onClick: () => void;
 }
 
@@ -48,7 +49,9 @@ const CircleBtnContainer = styled.button<{color: string}>`
 
 interface IIconBtn {
   children: any;
-  onClick: () => void;
+  onClick?: any;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 export function IconBtn({children, ...restProps}: IIconBtn) {

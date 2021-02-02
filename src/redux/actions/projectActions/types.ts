@@ -21,6 +21,7 @@ import {
 
 export interface IGetProjectsAction {
   type: typeof GET_PROJECTS;
+  search: string;
 }
 
 export interface IGetProjectsSuccessAction {

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import {Divider} from '@material-ui/core';
 import {
+  ActiveProjectName,
   Container,
   ItemIcon,
   ItemLink,
@@ -103,7 +104,7 @@ export default function Aside({activeProject, setHeaderTitle}: IAside) {
           <Divider />
           {activeProject ? (
             <>
-              <h3>{activeProject.name}</h3>
+              <ActiveProjectName>{activeProject.name}</ActiveProjectName>
               {projectMenu.map(({label, iconPath, path, linkId}) => {
                 const active = activePage === linkId ? true : false;
                 return (

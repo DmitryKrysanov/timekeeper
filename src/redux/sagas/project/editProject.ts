@@ -3,7 +3,7 @@ import {IEditProjectAction} from '../../actions/projectActions/types';
 import {EDIT_PROJECT} from '../../constants/projectConstants';
 import {
   editProjectFail,
-  editProjectSuccess,
+  // editProjectSuccess,
   projectsIsLoad,
   projectsIsUpdated,
 } from '../../actions/projectActions';
@@ -12,7 +12,6 @@ import {projectApi} from '../../../api';
 function* editProjectWorker(action: IEditProjectAction) {
   try {
     yield put(projectsIsLoad(true));
-    console.log(action.payload);
     yield call(projectApi.editProject, action.payload);
     yield put(projectsIsUpdated(false));
     // yield put(getProjectsSuccess(projects));

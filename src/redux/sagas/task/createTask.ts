@@ -1,14 +1,27 @@
-import {takeEvery, put, call} from 'redux-saga/effects';
+import {takeEvery, put, call, delay} from 'redux-saga/effects';
 import {CREATE_TASK} from '../../constants/taskConstants';
-import {ICreateTaskAction} from './../../actions/TaskActions/types';
-
-//http://localhost:5000/api/projects/?uid=${uid}/projectId/
+import {ICreateTaskAction} from '../../actions/taskActions/types';
+import {
+  createTaskFail,
+  tasksIsLoad,
+  tasksIsUpdated,
+} from '../../actions/taskActions';
+import {taskApi} from '../../../api';
 
 function* createTaskWatcher(action: ICreateTaskAction) {
   try {
-  } catch (error) {}
+    yield put(tasksIsLoad(true));
+    yield call(taskApi.createTask, action.payload);
+    yield put(tasksIsUpdated(false));
+    yield put(tasksIsLoad(false));
+  } catch (error) {
+    yield put(tasksIsLoad(false));
+    yield put(createTaskFail(error.message));
+    yield delay(3000);
+    yield put(createTaskFail(null));
+  }
 }
 
 export function* watchCreateTask() {
-  takeEvery(CREATE_TASK, createTaskWatcher);
+  yield takeEvery(CREATE_TASK, createTaskWatcher);
 }
