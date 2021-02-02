@@ -51,6 +51,7 @@ interface IIconBtn {
   children: any;
   onClick?: any;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 export function IconBtn({children, ...restProps}: IIconBtn) {

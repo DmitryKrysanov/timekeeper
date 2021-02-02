@@ -93,7 +93,10 @@ export default function TaskListItem({task}: any) {
                   setEditedTaskName(event.currentTarget.value)
                 }
               />
-              <IconBtn type="submit">
+              <IconBtn
+                type="submit"
+                disabled={editedTaskName.trim() ? false : true}
+              >
                 <DoneIcon color="primary" />
               </IconBtn>
             </form>
