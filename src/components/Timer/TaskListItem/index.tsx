@@ -1,24 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/macro';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import DoneIcon from '@material-ui/icons/Done';
 import {deleteTask, editTask} from '../../../redux/actions/taskActions';
 import {getFullTime, getShortTime} from '../../../utils/timeConvert';
 import {IPeriod} from '../../Projects/types';
 import {IconBtn} from '../../UI/Button';
+import {Menu, MenuItem} from '../../UI/Menu';
 
 export default function TaskListItem({task}: any) {
   const {taskName, totalDuration, periods, _id} = task;
   const [isOpen, setIsOpen] = useState(false);
   const [isStart, setIsStart] = useState(false);
-  const [isOptions, setIsOptions] = useState(false);
   const [counter, setCounter] = useState(getFullTime(totalDuration));
-  const dispatch = useDispatch();
   const [start, setStart] = useState(0);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editedTaskName, setEditedTaskName] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let interval: any;
@@ -59,9 +61,22 @@ export default function TaskListItem({task}: any) {
     dispatch(editTask(updatedTask));
   };
 
-  const onOptionsClick = () => {
-    setIsOptions(!isOptions);
-    dispatch(deleteTask(_id));
+  const onEditClick = () => {
+    setIsEdit(!isEdit);
+  };
+
+  const onEdit = (event: any) => {
+    event.preventDefault();
+    const editedTask = {
+      ...task,
+      taskName: editedTaskName,
+    };
+    dispatch(editTask(editedTask));
+    setIsEdit(!isEdit);
+  };
+
+  const onDeleteClick = () => {
+    dispatch(deleteTask(_id)); // can be undefined
   };
 
   return (
@@ -69,7 +84,22 @@ export default function TaskListItem({task}: any) {
       <div className="task__title">
         <div className="title" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-          <h6>{taskName}</h6>
+          {isEdit ? (
+            <form className="edit" onSubmit={onEdit}>
+              <input
+                type="text"
+                defaultValue={taskName}
+                onChange={(event) =>
+                  setEditedTaskName(event.currentTarget.value)
+                }
+              />
+              <IconBtn type="submit">
+                <DoneIcon color="primary" />
+              </IconBtn>
+            </form>
+          ) : (
+            <h6>{taskName}</h6>
+          )}
           <h6>{counter}</h6>
         </div>
         <div className="actions">
@@ -82,9 +112,10 @@ export default function TaskListItem({task}: any) {
               <PlayCircleFilledIcon color="primary" />
             </IconBtn>
           )}
-          <IconBtn onClick={onOptionsClick}>
-            <MoreVertIcon />
-          </IconBtn>
+          <Menu>
+            <MenuItem onClick={onEditClick}>Edit</MenuItem>
+            <MenuItem onClick={onDeleteClick}>Delete</MenuItem>
+          </Menu>
         </div>
       </div>
       <ul className="task__periods">
@@ -100,6 +131,8 @@ export default function TaskListItem({task}: any) {
     </TaskContainer>
   );
 }
+
+// STYLES
 
 const TaskContainer = styled.div<{isOpen: boolean}>`
   padding: 0 0 0 16px;
@@ -118,11 +151,26 @@ const TaskContainer = styled.div<{isOpen: boolean}>`
       align-items: center;
 
       cursor: pointer;
+
+      .edit {
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+          border-style: none;
+          border-bottom: 1px solid #e5e5e5;
+        }
+      }
     }
 
     .actions {
       display: flex;
       align-items: center;
+
+      position: relative;
     }
   }
 

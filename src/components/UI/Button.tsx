@@ -49,7 +49,8 @@ const CircleBtnContainer = styled.button<{color: string}>`
 
 interface IIconBtn {
   children: any;
-  onClick: () => void;
+  onClick?: any;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export function IconBtn({children, ...restProps}: IIconBtn) {
