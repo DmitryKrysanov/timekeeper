@@ -10,7 +10,7 @@ import {
   Settings,
   Statistics,
 } from '../../components';
-import CreateProject from '../../components/CreateProject';
+import CreateProject from '../../components/ProjectDialog';
 import MobileMenu from '../../components/MobileMenu';
 import Alert from '../../components/UI/Alert';
 import * as ROUTES from '../../constants/routes';
@@ -28,17 +28,8 @@ export default function MainLayout() {
     setIsAsideOpen(!isAsideOpen);
   };
 
-  const openCreateProjectHandler = () => {
-    setIsCreateProject(!isCreateProject);
-  };
-
   return (
     <>
-      <CreateProject
-        isCreateProject={isCreateProject}
-        openCreateProjectHandler={openCreateProjectHandler}
-        isProjectLoad={isProjectLoad}
-      />
       <Container>
         <Aside activeProject={activeProject} setHeaderTitle={setHeaderTitle} />
         <Content>

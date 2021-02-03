@@ -14,11 +14,17 @@ import {
   EDIT_PROJECT,
   EDIT_PROJECT_SUCCESS,
   EDIT_PROJECT_FAIL,
+  DELETE_PROJECT,
+  DELETE_PROJECT_SUCCESS,
+  DELETE_PROJECT_FAIL,
 } from '../../constants/projectConstants';
 import {
   ICreateProjectAction,
   ICreateProjectFailAction,
   ICreateProjectSuccessAction,
+  IDeleteProjectAction,
+  IDeleteProjectFailAction,
+  IDeleteProjectSuccessAction,
   IEditProjectAction,
   IEditProjectFailAction,
   IEditProjectSuccessAction,
@@ -123,6 +129,24 @@ export const editProjectFail = (
   payload: string | null,
 ): IEditProjectFailAction => ({
   type: EDIT_PROJECT_FAIL,
+  payload,
+});
+
+export const deleteProject = (payload: string): IDeleteProjectAction => ({
+  type: DELETE_PROJECT,
+  payload,
+});
+
+export const deleteProjectSuccess = (): IDeleteProjectSuccessAction => {
+  return {
+    type: DELETE_PROJECT_SUCCESS,
+  };
+};
+
+export const deleteProjectFail = (
+  payload: string | null,
+): IDeleteProjectFailAction => ({
+  type: DELETE_PROJECT_FAIL,
   payload,
 });
 

@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import {getProjects} from '../../redux/actions/projectActions';
+import ProjectDialog from '../ProjectDialog';
 import Header from '../Header';
 import Loader from '../UI/Loader';
 import {Container, Owner, ProjectCard, ProjectList} from './styles/Projects';
@@ -10,6 +11,7 @@ import {IProject} from './types';
 
 export default function Projects() {
   const [search, setSearch] = useState('');
+  const [isCreateProject, setIsCreateProject] = useState(false);
   const dispatch = useDispatch();
   const {projectsIsUpdated, isProjectLoad, projects} = useSelector(
     (state: any) => state.project,
@@ -19,12 +21,22 @@ export default function Projects() {
     dispatch(getProjects(search));
   }, [projectsIsUpdated, search]);
 
+  const openHandler = () => {
+    setIsCreateProject(!isCreateProject);
+  };
+
   return (
     <Container>
+      <ProjectDialog
+        open={isCreateProject}
+        openHandler={openHandler}
+        type="create"
+      />
       <Header
         title="Projects"
         search={true}
         createProject={true}
+        openCreateProjectHandler={openHandler}
         setSearch={setSearch}
       />
       {isProjectLoad ? (
