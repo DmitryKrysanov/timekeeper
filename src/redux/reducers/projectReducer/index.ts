@@ -6,6 +6,8 @@ import {
   PROJECTS_IS_UPDATED,
   CREATE_PROJECT_FAIL,
   GET_PROJECT_BY_ID_SUCCESS,
+  EDIT_PROJECT_FAIL,
+  DELETE_PROJECT_FAIL,
 } from '../../constants/projectConstants';
 import {ProjectActionsTypes} from '../../actions/projectActions/types';
 
@@ -45,6 +47,8 @@ export const projectReducer = (
     case GET_PROJECTS_FAIL:
     case CREATE_PROJECT_FAIL:
     case GET_PROJECT_BY_ID_FAIL:
+    case EDIT_PROJECT_FAIL:
+    case DELETE_PROJECT_FAIL:
       return {
         ...state,
         error: action.payload,

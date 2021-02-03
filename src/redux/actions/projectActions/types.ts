@@ -66,6 +66,7 @@ export interface IEditProjectFailAction {
 
 export interface IDeleteProjectAction {
   type: typeof DELETE_PROJECT;
+  payload: string;
 }
 
 export interface IDeleteProjectSuccessAction {
